@@ -9,17 +9,28 @@ body {
   padding: 0 20px;
 }
 
+.background{
+  width: 100%;
+  height: 100%;
+  background-image: linear-
+    gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75), url("https://wallpapers.com/images/file/a-collection-of-horror-movie-posters-xtjhn92yx4u36s6r.jpg"));;
+  background-size: cover;
+  background-position: center;
+}
+
+
 .container {
-  border: 2px solid #dedede;
-  background-color: #f1f1f1;
+  border: 2px solid #ffffff00;
+  background-color: #ffffff00;
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
 }
 
 .darker {
-  border-color: #ccc;
-  background-color: #ddd;
+  /* message bubble */
+  border-color: #ffffff00;
+  background-color: rgb(235, 235, 235);
 }
 
 .container::after {
@@ -44,12 +55,12 @@ body {
 
 .time-right {
   float: right;
-  color: #aaa;
+  color: rgba(255, 255, 255, 0);
 }
 
 .time-left {
   float: left;
-  color: #999;
+  color: rgba(255, 255, 255, 0);
 }
 </style>
 <script   
@@ -99,17 +110,19 @@ setInterval(function(){
 
 <div class="container">
     <style>
+    /* inputting box*/
     input[type=text], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 2px solid #dedede;
     border-radius: 4px;
     box-sizing: border-box;
     }
 
     input[type=submit] {
+    /* send button */
     width: 100%;
     background-color: #4CAF50;
     color: white;
@@ -125,8 +138,9 @@ setInterval(function(){
     }
 
     div {
+    /* chat box background color */
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #ffffff00;
     padding: 20px;
     }
     </style>
