@@ -22,8 +22,10 @@ def checkview(request):
     username = request.POST['username']
     
     if Room.objects.filter(name=room).exists():
+        # if the room already exists, go to that room
         return redirect('/'+room+'/?username='+username)
     else:
+        # if the room does not exist, create a new room
         new_room = Room.objects.create(name=room)
         new_room.save()
         return redirect('/'+room+'/?username='+username)
@@ -46,3 +48,5 @@ def getMessages(request, room):
     messages = Message.objects.filter(room=room_details.id)
     
     return JsonResponse({"messages": list(messages.values())})
+
+
