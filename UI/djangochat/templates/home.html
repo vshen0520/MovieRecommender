@@ -4,21 +4,29 @@
     <title>Movie Recommender Homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" href="/../chatting/static/css/style.css"> -->
+    <style>
+    body{
+      background-image: linear-gradient(rgba(0, 0, 0, 0.405), rgba(0, 0, 0, 0.401)), url("https://wallpapers.com/images/file/a-collection-of-horror-movie-posters-xtjhn92yx4u36s6r.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    </style>
 <style>
 body {
   margin: 0 auto;
   max-width: 800px;
-  padding: 0 20px;
-  font-family: sans-serif;
+  padding: 0 20px;  
+  font-family: 'Akaya Kanadaka', cursive;
+  font-size: 18px;
 }
 
 
-
-
 .container {
-  border: 2px solid #ffffff00;
+  /* border: 2px solid #d46767a2; */
   /* background-color: #f1f1f1; */
-  background-color: #ffffff00;
+  background-color: #ffffff88;
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
@@ -66,10 +74,9 @@ body {
 
   <div class="background">
     <div align="center">
-      <h2>Welcome to Movie Recommender</h2>
-      <p style="font-family: Arial", color:cyan>Let's pick up a movie that best suits your mood today!</p>
+      <h2 style="color: yellow; font-size: 50px;">Welcome to Movie Recommender</h2>
+      <p style="font-family: 'Akaya Kanadaka';color: whitesmoke; font-size: 28px;">Come chat with us and Let's pick up a movie that best suits your mood today!</p>
     </div>
-
 
     <div class="container">
       <style>
@@ -85,7 +92,7 @@ body {
 
       input[type=submit] {
       width: 100%;
-      background-color: #4CAF50;
+      background-color: #3d71ff;
       color: white;
       padding: 14px 20px;
       margin: 8px 0;
@@ -95,7 +102,7 @@ body {
       }
 
       input[type=submit]:hover {
-      background-color: #45a049;
+      background-color: #3d71ff;
       }
 
       div {
@@ -107,11 +114,11 @@ body {
 
       <form id="post-form" method="POST" action="checkview">
           {% csrf_token %}
-          <label>Date (2022-XX-XX):</label>
+          <label style="font-family: optima; font-weight: bold;">Date (202X-XX-XX):</label>
           <input type="text" name="room_name" id="room_name" width="100px" />
-          <label>Username:</label>
+          <label style="font-family: optima; font-weight: bold;">Username:</label>
           <input type="text" name="username" id="username" width="100px" />
-          <input type="submit" value="Enter Room">
+          <input type="submit" value="Start Conversation">
       </form>
     </div>
   </div>
