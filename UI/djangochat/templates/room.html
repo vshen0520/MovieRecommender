@@ -90,31 +90,32 @@
 
     </div> 
 
+
+    <!-- refresh the page with the ajex functoin every 1 second -->
     <script>
-    $(document).ready(function(){
-      setInterval(function(){
-      // refresh the page with the ajex functoin every 1 second
-        $.ajax({
-            type: 'GET',
-            url : "/getMessages/{{room}}/",
-            success: function(response){
-                // console.log(response);
-                $("#display").empty();
-                for (var key in response.messages)
-                {
-                    var temp="<div class='container darker'><b>"+response.messages[key].user+
-                      "</b><p>"+response.messages[key].value+
-                        "</p><span class='time-left'>"+
-                          response.messages[key].timestamp+"</span></div>";
-                    $("#display").append(temp);
-                }
-            },
-            error: function(response){
-                alert('An error occured')
-            }
-        });
-    },1000);
-    })
+      $(document).ready(function(){
+        setInterval(function(){
+          $.ajax({
+              type: 'GET',
+              url : "/getMessages/{{room}}/",
+              success: function(response){
+                  // console.log(response);
+                  $("#display").empty();
+                  for (var key in response.messages)
+                  {
+                      var temp="<div class='container darker'><b>"+response.messages[key].user+
+                        "</b><p>"+response.messages[key].value+
+                          "</p><span class='time-left'>"+
+                            response.messages[key].timestamp+"</span></div>";
+                      $("#display").append(temp);
+                  }
+              },
+              error: function(response){
+                  alert('An error occured')
+              }
+          });
+      },1000);
+      })
     </script>
 
 
@@ -155,38 +156,131 @@
         }
         </style>
 
-        <form id="post-form">
+        <form id="post-form", method="get", action="getSingleMessage" >
             {% csrf_token %}
             <input type="hidden" name="username" id="username" value="{{username}}"/>
             <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}"/>
-            <input type="text" name="message" id="message" width="100px" />
-            <input type="submit" value="Send">
+            <!-- user inputting data -->
+            <input type="text" name="message" id="message" width="100px", name="usr_message" />
+            <input type="submit" value="Send" id="Send">
+            <input type="submit" value="Get Reply" id="GetReply">
         </form>
     </div>
+
+    <form>
+      <!-- end conversation button -->
+      <input type="button" value="End Conversation" onclick="history.back()">
+      <style>
+        input[type=button] {
+          width: 30%;
+          background-color: #fda066;
+          color: white;
+          padding: 14px 20px;
+          margin: 0;
+          /* position: relative; */
+          top: 50%;
+          transform: translateX(110%);
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+      </style>
+     </form>
 
   </body>
 
 
+<!-- Welcome sentence (SYSTEM) -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    // e.preventDefault();
+
+    $.ajax({
+      type:'POST',
+      url: '/send',
+      data:{
+          username:"Movie Recommender",
+          room_id:$('#room_id').val(),
+          message:"Hello welcome, how are you doing today?  :)",
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(data){
+        // message to indicate send success
+        // alert(data)
+      }
+    });
+    document.getElementById('message').value = ''
+  });
+</script>
+
+
+<!-- sending message (SYSTEM) -->
+<script type="text/javascript">
+  $("#GetReply").click(function(){
+  // $(document).on('submit','#post-form',function(e){
+  //   e.preventDefault();
+
+    $.ajax({
+      type:'POST',
+      url:'/send',
+      data:{
+          username:"Movie Recommender",
+          room_id:$('#room_id').val(),
+          message:"Goooood",
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(data){
+        // message to indicate send success
+        //  alert(data)
+      }
+    });
+
+    document.getElementById('message').value = ''
+  });
+</script>
+
+
+<!-- sending message (USER) -->
+<script type="text/javascript">
+  $("#Send").click(function(){
+  // $(document).on('submit','#post-form',function(e){
+    // e.preventDefault();
+
+    $.ajax({
+      type:'POST',
+      url:'/send',
+      data:{
+          username:$('#username').val(),
+          room_id:$('#room_id').val(),
+          message:$('#message').val(),
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(data){
+        // message to indicate send success
+        //  alert(data)
+      }
+    });
+    document.getElementById('message').value = ''
+  });
+</script>
+
+<!-- send the user input message back to database-->
   <script type="text/javascript">
     $(document).on('submit','#post-form',function(e){
       e.preventDefault();
 
       $.ajax({
-        type:'POST',
-        url:'/send',
-        data:{
-            username:$('#username').val(),
-            room_id:$('#room_id').val(),
-            message:$('#message').val(),
-          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-        },
+        type:'GET',
+        url:'/getSingleMessage',
+        data:{message:$('#message').val()},
         success: function(data){
-          // message to indicate send success
+          // message send back success
           //  alert(data)
         }
       });
       document.getElementById('message').value = ''
     });
   </script>
+
 
 </html>

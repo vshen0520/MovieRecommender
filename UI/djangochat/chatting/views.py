@@ -30,6 +30,9 @@ def checkview(request):
         new_room.save()
         return redirect('/'+room+'/?username='+username)
 
+# def returnHome(request):
+#     return redirect('/')
+
 
 def send(request):
     message = request.POST['message']
@@ -41,6 +44,16 @@ def send(request):
     
     return HttpResponse('Message sent successfully')
 
+def getReplies(request):
+    message = request.POST['message']
+    username = request.POST['username']
+    room_id = request.POST['room_id']
+    
+    new_message = Message.objects.create(value=message, user=username, room=room_id)
+    new_message.save()
+        
+    return JsonResponse({"system_reply": system_reply})
+
 
 def getMessages(request, room):
     room_details = Room.objects.get(name=room)
@@ -50,3 +63,19 @@ def getMessages(request, room):
     return JsonResponse({"messages": list(messages.values())})
 
 
+def getSingleMessage(request, room):
+    if request.method == 'GET':
+        # get the lastest message of user
+        usr_message = request.GET.get('usr_message')
+        # whatever function to get the lastest message of user for further processing
+        # ...
+        
+    return JsonResponse({"system_reply": system_reply})
+
+
+def systemReply(request):
+    if request.method == "POST":
+        # get the lastest message of user
+        system_reply = request.POST
+       
+    return JsonResponse({"system_reply": system_reply})
