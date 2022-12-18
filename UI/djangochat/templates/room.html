@@ -84,7 +84,7 @@
 
       <!-- Welcome sentence
       <div class="container darker">
-        <b>Movie Recommender</b><p>Hello welcome, how are doing today?  :)</p>
+        <b>Movie Recommender</b><p>Hello welcome, how are you doing today?  :)</p>
         <span class="time-left">20th, April 2021</span>
       </div> -->
 
@@ -156,7 +156,7 @@
         }
         </style>
 
-        <form id="post-form", method="get", action="getSingleMessage" >
+        <form id="post-form", method="get", action="systemReply" >
             {% csrf_token %}
             <input type="hidden" name="username" id="username" value="{{username}}"/>
             <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}"/>
@@ -214,11 +214,45 @@
 </script>
 
 
-<!-- sending message (SYSTEM) -->
+<!-- sending message to database (SYSTEM) -->
+<!-- 1. get system message from database -->
 <script type="text/javascript">
-  $("#GetReply").click(function(){
+  $("#GetReply").click('#post-form', function(e){
   // $(document).on('submit','#post-form',function(e){
-  //   e.preventDefault();
+    e.preventDefault();
+
+    $.ajax({
+      url:'/systemReply/{{room}}/',
+      success: function(response){
+        // get the reply from the server
+        sys_message = response.sys_message;
+        
+        // 2. send system message to database
+        $.ajax({
+          type:'POST',
+          url:'/send',
+          data:{
+              username:"Movie Recommender",
+              room_id:$('#room_id').val(),
+              message:sys_message,
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+          },
+          success: function(data){
+            // message to indicate send success
+            // alert(data)
+          }
+        });
+      }
+    });
+
+    document.getElementById('message').value = ''
+  });
+</script>
+
+<!-- <script type="text/javascript">
+  $("#GetReply").click('#post-form', function(e){
+  // $(document).on('submit','#post-form',function(e){
+    e.preventDefault();
 
     $.ajax({
       type:'POST',
@@ -226,7 +260,7 @@
       data:{
           username:"Movie Recommender",
           room_id:$('#room_id').val(),
-          message:"Goooood",
+          message:"tests test test", // get the reply from the server
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
       },
       success: function(data){
@@ -237,14 +271,14 @@
 
     document.getElementById('message').value = ''
   });
-</script>
+</script> -->
 
 
-<!-- sending message (USER) -->
+<!-- sending message to database (USER) -->
 <script type="text/javascript">
-  $("#Send").click(function(){
+  $("#Send").click(function(e){
   // $(document).on('submit','#post-form',function(e){
-    // e.preventDefault();
+    e.preventDefault();
 
     $.ajax({
       type:'POST',
@@ -263,24 +297,6 @@
     document.getElementById('message').value = ''
   });
 </script>
-
-<!-- send the user input message back to database-->
-  <script type="text/javascript">
-    $(document).on('submit','#post-form',function(e){
-      e.preventDefault();
-
-      $.ajax({
-        type:'GET',
-        url:'/getSingleMessage',
-        data:{message:$('#message').val()},
-        success: function(data){
-          // message send back success
-          //  alert(data)
-        }
-      });
-      document.getElementById('message').value = ''
-    });
-  </script>
 
 
 </html>
