@@ -7,7 +7,7 @@ This is the algorithm for movie recommender.
 
 `User: "I like thriller movies. What thriller or horror movies would you suggest watching that came out in 2019?"`
 
-#### Step 1. Generate the responses, and predict the position of movie placeholders.
+#### Step 1. Generate the responses, and predict the positions of movie placeholders.
 `"<movie> might be a good choice for you. It is a thriller movie came out in 2019."`
 #### Step 2. Predict the movies.
 `Joker (2019 film)`
