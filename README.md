@@ -3,12 +3,12 @@
 Create an intelligent assistant, which aims to proactively elicit user preference
 and recommend high quality items through natural language conversations. 
 
-# Two subparts:
+## Two subparts:
 
 1. UI Interface
 2. Knowledge Graph + NLP + Recommendation Pretraining Algorithm
 
-# To run the website
+## To run the website
 
 #### Step 1. Open the terminal, and go into the directory:
 `UI>djangochat`
