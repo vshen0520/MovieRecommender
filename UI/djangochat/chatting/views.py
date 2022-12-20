@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from chatting.models import Room, Message
 from django.http import HttpResponse, JsonResponse
+from chatting.preload import MovieREC
 
 def home(request):
     # homepage
@@ -64,15 +65,19 @@ def systemReply(request, room):
     #     usr_message = request.GET.get('usr_message')
         # IF NOT WORKING, TRY THIS:
         room_details = Room.objects.get(name=room)
-        usr_message = Message.objects.filter(room=room_details.id).last().value
-        
+        # usr_message = Message.objects.filter(room=room_details.id).last().value
+        messageList = [""]
+        for messageDict in list(Message.objects.filter(room=room_details.id).values()):
+            messageList.append(messageDict['value'])
+
         #  whatever function to get the lastest message of user for further processing
         # ...
         # eg. sys_message = myRecommend(usr_message)
         # 
         
         # for testing purpose, just return the lastest message of user
-        sys_message = usr_message
+        # sys_message = usr_message
+        sys_message = MovieREC.conversation_recommend(messageList)
         
         return JsonResponse({"sys_message": sys_message})
     # else:
