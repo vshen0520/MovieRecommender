@@ -62,7 +62,7 @@ Pretrain recommendation Encoder with RoBERTa
 python Data/inspired_gen/merge.py
 bash Recommendation/train_rec.sh
 ```
-## Reference
+## Citation
 ```
 @inproceedings{hayati-etal-2020-inspired,
     title = "INSPIRED: Toward Sociable Recommendation Dialog Systems",
