@@ -1,12 +1,31 @@
 # MovieRecommender Algorithm
 
 This is the algorithm for movie recommender.
+### Example
+
+`Recommender: "Hello, I hear that you are seeking a movie recommendation. Tell me about your movie preferences?"`
+
+`User: "I like thriller movies. What thriller or horror movies would you suggest watching that came out in 2019?"`
+
+#### Step 1. Generate the response, and predict the movie placeholder.
+`"<movie> might be a good choice for you. It is a thriller movie came out in 2019."`
+#### Step 2. Predict the movie.
+`Joker (2019 film)`
+#### Step 3. Put the movie into the placeholder, and recommend to user.
+`Recommender: "Joker (2019 film) might be a good choice for you. It is a thriller movie came out in 2019."`
 
 ## Three subparts:
 
 1. Knowledge Graph
 2. Responses Generation
 3. Movies Generation
+
+## Requirements
+
+- python >= 3.6
+- pytorch == 1.9.0
+- transformers == 4.15.0
+
 
 ## Dataset processing
 ### Download Dataset
