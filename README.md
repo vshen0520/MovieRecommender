@@ -6,5 +6,5 @@ and recommend high quality items through natural language conversations.
 # Four subparts:
 
 1. UI Interface
-2. NLP + Recommendation Pretraining Algorithm
+2. Knowledge Graph + NLP + Recommendation Pretraining Algorithm
 3. Data Crawler
