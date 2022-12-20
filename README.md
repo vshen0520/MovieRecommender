@@ -7,4 +7,4 @@ and recommend high quality items through natural language conversations.
 
 1. UI Interface
 2. NLP + Recommendation Algorithm
-4. Data Crawler
+3. Data Crawler
