@@ -5,7 +5,6 @@ and recommend high quality items through natural language conversations.
 
 # Four subparts:
 
-1. UI interface
-2. NLP
-3. Recommending algorithm
-4. Data crawler
+1. UI Interface
+2. NLP + Recommendation Algorithm
+4. Data Crawler
