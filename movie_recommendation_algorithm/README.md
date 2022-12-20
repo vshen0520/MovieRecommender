@@ -1,17 +1,17 @@
-# MovieRecommender Algorithm
+# Pretraining MovieRecommender
 
-This is the algorithm for movie recommender.
+This is the pre-training for movie recommender.
 ### Example
 
 `Recommender: "Hello, I hear that you are seeking a movie recommendation. Tell me about your movie preferences?"`
 
 `User: "I like thriller movies. What thriller or horror movies would you suggest watching that came out in 2019?"`
 
-#### Step 1. Generate the responses, and predict the positions of movie placeholders.
+#### Step 1. Generate the responses, and predict the positions of movie placeholders
 `"<movie> might be a good choice for you. It is a thriller movie came out in 2019."`
-#### Step 2. Predict the movies.
+#### Step 2. Predict the movies
 `Joker (2019 film)`
-#### Step 3. Put the movies into the placeholders, and recommend to users.
+#### Step 3. Put the movies into the placeholders, and recommend to users
 `Recommender: "Joker (2019 film) might be a good choice for you. It is a thriller movie came out in 2019."`
 
 ## Three subparts:
@@ -22,7 +22,7 @@ This is the algorithm for movie recommender.
 
 ## Requirements
 
-- python >= 3.6
+- python >= 3.6.0
 - pytorch == 1.9.0
 - transformers == 4.15.0
 
@@ -60,7 +60,7 @@ bash NLP/infer_conv.sh
 Pretrain recommendation Encoder with RoBERTa
 ```
 python Data/inspired_gen/merge.py
-bash Recommendation/train_rec.py
+bash Recommendation/train_rec.sh
 ```
 ## Reference
 ```
