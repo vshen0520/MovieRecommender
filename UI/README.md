@@ -1,3 +1,5 @@
+# UI
+
 ## Front-end configurations
 `UI>djangochat>templates`
 #### home.html: homepage settings
